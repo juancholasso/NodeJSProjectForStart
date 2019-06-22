@@ -2,7 +2,8 @@
  * Environment
  */
 require('./config/env');
-
+console.log(process.env.MAIL_USER)
+console.log(process.env.MAIL_PASSWORD)
 /**
  * Database Connection
 */

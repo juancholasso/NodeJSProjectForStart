@@ -1,7 +1,6 @@
 import flashMessages from '../imports/FlashMessages.js';
 import ExampleController from '../controllers/ExampleController';
 import fs from 'fs';
-import path from 'path';
 /**
  * Services for app web
  */
@@ -26,7 +25,7 @@ class ExampleService{
    
     async uploadFile(req, res){
         try{
-            let storagePath = 'storage/'+req.session.user;
+            let storagePath = 'storage/users/'+req.session.user;
             fs.mkdirSync(storagePath, { recursive: true });
             fs.writeFileSync(storagePath+'/'+req.files.foo.name, req.files.foo.data);
             flashMessages.showSuccessMessage(req, "Exito!", "El archivo se ha guardado exitosamente en el servidor!");

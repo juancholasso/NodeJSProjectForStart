@@ -17,5 +17,10 @@ router.get('/permissions', (req, res) => { permissionsService.getPermissions(req
 routes.push({path:'/permissions',name:'permissions-index'})
 
 
+router.use('/permissions/:idpermission/delete', authmiddle.checkPermission('permissions-delete'));
+router.get('/permissions/:idpermission/delete', (req, res) => { permissionsService.deletePermission(req, res) });
+routes.push({path:'/permissions/:idpermission/delete',name:'permissions-delete'})
+
+
 module.exports.router = router
 module.exports.routes = routes

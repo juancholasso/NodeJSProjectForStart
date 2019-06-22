@@ -15,5 +15,13 @@ function showErrorMessage(req, ptitle, pmsg){
     })
 }
 
+function showTimeMessage(req, ptitle, pmsg, ptime){
+    return req.flash({
+        type: 'time',
+        time: {title:ptitle ,msg:pmsg, time:ptime},
+        redirect: null
+    })
+}
 module.exports.showSuccessMessage = showSuccessMessage;
 module.exports.showErrorMessage = showErrorMessage;
+module.exports.showTimeMessage = showTimeMessage;

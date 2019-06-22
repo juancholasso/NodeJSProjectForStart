@@ -2,6 +2,7 @@ var path = require('path');
 var RolesHasPermissions = require('../models/RolesHasPermissions.js');
 var Permission = require('../models/Permission.js');
 const jwt = require('jsonwebtoken');
+var flashMessages = require('../imports/FlashMessages.js');
 
 //Check if user is autheticated, if not, show login page
 //Verifica si el usuario est'a autenticado, de lo contrario muestra la pagina de login
@@ -39,6 +40,11 @@ let checkPermission = function (pname){
         let roles = req.session.roles;
         let hasPermission = false;
         let permission = await Permission.findOne({where: {name: pname}});
+        if(permission == null){
+            flashMessages.showErrorMessage(req, "Error!", "El usuario no tiene los permisos!");
+            req.session.save(()=>{ res.redirect('/home') });
+            return 0;
+        }
         for(let rol of roles){
             let existPermission = await RolesHasPermissions.findOne({where:{idrol:rol.idrol, idpermission: permission.idpermission}});
             if(existPermission){
@@ -48,8 +54,11 @@ let checkPermission = function (pname){
         }
         if(hasPermission)
             next();
-        else
-            res.render('auth/login.ejs');
+        else{
+            flashMessages.showErrorMessage(req, "Error!", "El usuario no tiene los permisos!");
+            req.session.save(()=>{ res.redirect('/home') });
+        }
+            
     }
 }
 

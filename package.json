@@ -1,7 +1,7 @@
 {
-  "name": "StartServer",
+  "name": "the_finder",
   "version": "1.0.0",
-  "description": "",
+  "description": "Aplicacion Objetos Perdidos - Universidad El Bosque",
   "main": "index.js",
   "dependencies": {
     "@types/express-flash-notification": "^0.5.0",
@@ -28,7 +28,9 @@
     "pg-hstore": "^2.3.2",
     "sequelize": "^5.1.0"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "nodemon": "^1.19.1"
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "app": "node index.js",

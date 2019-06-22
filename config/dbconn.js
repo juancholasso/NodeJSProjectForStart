@@ -5,7 +5,7 @@ const sequelize = new Sequelize(process.env.DB_DATABASE, process.env.DB_USERNAME
     dialectOptions: {
         "ssl": true
     },
-    logging: true , //Show all queries Database - Disable on production!
+    logging: false , //Show all queries Database - Disable on production!
 });
   
 //Connection Test

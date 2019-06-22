@@ -39,6 +39,18 @@ class PermissionsService{
     }
   }
 
+  async deletePermission(req, res){
+    try{
+      this.permissionsController.delelePermission(req.params.idpermission);
+      flashMessages.showSuccessMessage(req, "Exito!", "Permiso eliminado con éxito!");
+      req.session.save(()=>{ res.redirect('/permissions') });
+    }
+    catch(err){
+      flashMessages.showErrorMessage(req, "Error!", "No se han podido eliminar el permiso!");
+      req.session.save(()=>{ res.redirect('/permissions') });
+    }
+  }
+
 }
 
 

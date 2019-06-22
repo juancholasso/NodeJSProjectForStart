@@ -23,9 +23,9 @@ process.env.ADMIN_IDUSER = 1
 process.env.ADMIN_IDROL = 1
 
 //VARIABLES MAIL
-process.env.MAIL_SERVICE = "gmail"
-process.env.MAIL_USER = "example@gmail.com"
-process.env.MAIL_PASSWORD = "1234Admin"
+process.env.MAIL_SERVICE = process.env.MAIL_SERVICE || "gmail"
+process.env.MAIL_USER = process.env.MAIL_USER || "example@gmail.com"
+process.env.MAIL_PASSWORD = process.env.MAIL_PASSWORD || "passexample"
 
 
 //JWT

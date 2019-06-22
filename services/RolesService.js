@@ -28,7 +28,8 @@ class RolesService{
     async createRol(req, res){
         try{
             await this.rolesController.createRol(req.body.rol);
-            flashMessages.showSuccessMessage(req, "Exito!", "El rol se ha creado existosamente!");
+            // flashMessages.showSuccessMessage(req, "Exito!", "El rol se ha creado existosamente!");
+            flashMessages.showTimeMessage(req, "Exito!", "El rol se ha creado existosamente!", 2000);
             req.session.save(()=>{ res.redirect('/roles') });
         }
         catch(err){

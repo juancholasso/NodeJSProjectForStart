@@ -1,4 +1,5 @@
-var User = require('../models/User.js');
+import User from '../models/User';
+import Role from '../models/Role'
 import UsersHasRoles from '../models/UsersHasRoles.js';
 import bcrypt from 'bcrypt';
 import sequelize from '../config/dbconn';
@@ -9,7 +10,12 @@ class UserController{
     
     async getUsers(){
         try{
-            let users = await User.findAll()
+            let users = await User.findAll({
+                include: [{
+                    as: "roles",
+                    model: Role
+                }]
+              })
             return users;
         }
         catch(err){

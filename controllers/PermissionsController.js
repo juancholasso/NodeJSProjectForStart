@@ -32,6 +32,14 @@ class PermissionsController{
     }
   }
 
+  async delelePermission(pidpermission){
+    try{
+      await Permission.destroy({where:{idpermission: pidpermission}});
+    }
+    catch(err){
+       throw err;
+    }
+  }
 }
 
 //Exports-------------------------------------

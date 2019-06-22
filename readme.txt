@@ -1,7 +1,7 @@
 --Getting Started
 npm install
 
---Settings environment on config/env.js
+--Configurations on config/env.js
 
 --For develoment run
 npm run nserve (with nodemon)

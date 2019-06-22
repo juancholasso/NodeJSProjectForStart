@@ -52,7 +52,6 @@ class RolesController{
         try{
             transaction = await sequelize.transaction();
             await Role.destroy({ where: { idrol: idrol } }, {transaction: transaction});
-            await RolesHasPermissions.destroy({ where: {idrol: idrol}}, {transaction: transaction});
             await transaction.commit();
         }
         catch(err){

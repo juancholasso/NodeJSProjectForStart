@@ -82,14 +82,14 @@
 						</ul>
 					</div>
 				<% } %>
-				<% if (locals.can("send-mail")) { %>
+				<% if (can("send-mail")) { %>
 					<a href="/mail">
 						<i class="ti-panel"></i>
 						<p>Enviar Email
 						</p>
 					</a>
 				<% } %>
-				<% if (locals.can("upload-private-file-get")) { %>
+				<% if (can("upload-private-file-get")) { %>
 					<a href="/upload">
 						<i class="ti-panel"></i>
 						<p>Upload File

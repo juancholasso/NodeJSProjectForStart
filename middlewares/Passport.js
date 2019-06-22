@@ -24,7 +24,6 @@ async (email, password, done) => {
         else if(await authenticationController.checkEmailAndPassword(email, password)){
             return done(null, user);
         }
-        
         return done(null, false);
     }
     catch(err){

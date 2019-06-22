@@ -24,6 +24,8 @@ routes = routes.concat(require('./web/ExampleRoutes').routes)
 
 //Routes for ApiRest
 app.use('/api/', require('./api/LoginRoutes') )
+app.use('/api/', require('./api/UsersRoutes') )
+
 
 //Routes for errors
 router.get('/api/*', (req, res) => { res.status(404).json({"error":"Service not found"}) });
