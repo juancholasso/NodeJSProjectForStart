@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<% include ../includes/header.ejs %>
+	<title>Paper Dashboard PRO by Creative Tim</title>
+</head>
+
+<body>
+	<div class="wrapper">
+        
+        <% include ../includes/dashboard.ejs %>
+
+	    <div class="main-panel">
+            
+            <% include ../includes/navbar.ejs %>
+
+            <div class="content">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="card">
+                                <form id="registerFormValidation" action="create" method="post" novalidate="">
+                                    <div class="card-header">
+                                        <h4 class="card-title">
+                                            Crear Rol
+                                        </h4>
+                                    </div>
+                                    <div class="card-content">
+                                        <div class="form-group">
+                                            <label class="control-label">
+                                                Nombre rol <star>*</star>
+                                            </label>
+                                            <input class="form-control"
+                                                    name="rol"
+                                                    type="text"
+                                                    required="true",
+                                                    maxlength=20
+                                            />
+                                        </div>
+                                        <div class="category"><star>*</star>Campos Requeridos</div>
+                                    </div>
+                                    <div class="card-footer">
+                                        <button type="submit" class="btn btn-info btn-fill pull-left">Enviar</button>
+                                        <div class="clearfix"></div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+			<% include ../includes/footer.ejs %>
+	    </div>
+	</div>
+
+</body>
+
+    <% include ../includes/scripts.ejs %>
+
+    <script type="text/javascript">
+        $().ready(function(){
+			$('#registerFormValidation').validate();
+        });
+    </script>
+</html>

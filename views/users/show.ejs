@@ -1,0 +1,121 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<% include ../includes/header.ejs %>
+	<title>Paper Dashboard PRO by Creative Tim</title>
+</head>
+
+<body>
+	<div class="wrapper">
+        
+        <% include ../includes/dashboard.ejs %>
+
+	    <div class="main-panel">
+            
+            <% include ../includes/navbar.ejs %>
+        
+            <div class="content">
+                <div class="card">
+                    <div class="form-horizontal">
+                        <div class="card-content">
+                            <% if (user_res) { %>
+                                <h4 class="card-title">Usuario</h4>
+                                <fieldset>
+                                    <div class="form-group">
+                                        <label class="col-sm-2 control-label">
+                                            ID
+                                        </label>
+                                        <div class="col-sm-2" style="margin-top: 10px;">
+                                            <%= user_res.iduser %>
+                                        </div>
+                                    </div>
+                                </fieldset>
+                                <fieldset>
+                                    <div class="form-group">
+                                        <label class="col-sm-2 control-label">
+                                            Nombres
+                                        </label>
+                                        <div class="col-sm-2" style="margin-top: 10px;">
+                                            <%= user_res.name %>
+                                        </div>
+                                    </div>
+                                </fieldset>
+                                <fieldset>
+                                    <div class="form-group">
+                                        <label class="col-sm-2 control-label">
+                                            Apellidos
+                                        </label>
+                                        <div class="col-sm-2" style="margin-top: 10px;">
+                                            <%= user_res.lastname %>
+                                        </div>
+                                    </div>
+                                </fieldset>
+                                <fieldset>
+                                    <div class="form-group">
+                                        <label class="col-sm-2 control-label">
+                                            Correo
+                                        </label>
+                                        <div class="col-sm-2" style="margin-top: 10px;">
+                                            <%= user_res.email %>
+                                        </div>
+                                    </div>
+                                </fieldset>
+                                <fieldset>
+                                    <div class="form-group">
+                                        <label class="col-sm-2 control-label">
+                                            Teléfono
+                                        </label>
+                                        <div class="col-sm-2" style="margin-top: 10px;">
+                                            <%= user_res.telephone %>
+                                        </div>
+                                    </div>
+                                </fieldset>
+                                <fieldset>
+                                    <div class="form-group">
+                                        <label class="col-sm-2 control-label">
+                                            Documento
+                                        </label>
+                                        <div class="col-sm-2" style="margin-top: 10px;">
+                                            <%= user_res.iddocument %>
+                                        </div>
+                                    </div>
+                                </fieldset>
+                                <fieldset>
+                                    <div class="form-group">
+                                        <label class="col-sm-2 control-label">
+                                            Fecha de creación
+                                        </label>
+                                        <div class="col-sm-2" style="margin-top: 10px;">
+                                            <%= user_res.createdAt %>
+                                        </div>
+                                    </div>
+                                </fieldset>
+                                <fieldset>
+                                    <div class="form-group">
+                                        <label class="col-sm-2 control-label">
+                                            Ultima actualización
+                                        </label>
+                                        <div class="col-sm-2" style="margin-top: 10px;">
+                                            <%= user_res.updatedAt %>
+                                        </div>
+                                    </div>
+                                </fieldset>
+                            <% } %>
+                        </div>
+                    </div>
+                </div>
+            </div>
+			<% include ../includes/footer.ejs %>
+	    </div>
+	</div>
+
+</body>
+
+    <% include ../includes/scripts.ejs %>
+
+    <script type="text/javascript">
+        $().ready(function(){
+			$('#registerFormValidation').validate();
+        });
+    </script>
+</html>

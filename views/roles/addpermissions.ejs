@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<% include ../includes/header.ejs %>
+	<title>Asignar Permisos</title>
+</head>
+
+<body>
+	<div class="wrapper">
+        
+        <% include ../includes/dashboard.ejs %>
+
+	    <div class="main-panel">
+            
+            <% include ../includes/navbar.ejs %>
+
+	        <div class="content">
+	            <div class="container-fluid">
+	                <div class="row">
+	                    <div class="col-md-12">
+							<h4 class="title">Asignar Permisos</h4>
+							<div class="card-content">
+							</div>
+	                        <div class="card">
+                                <form id="registerFormValidation" action="permissions" method="post" novalidate="">
+                                    <div class="card-content">
+                                        <div class="toolbar">
+                                            <!--Here you can write extra buttons/actions for the toolbar-->
+                                        </div>
+                                        <h4 class="card-title">Permisos</h4>
+                                        <% if (permissions) { %>
+                                            <% permissions.forEach(function(permission){ %>
+                                                <% if (permissionsAsigned[permission.idpermission] != undefined) { %>
+                                                    <div class="checkbox">
+                                                        <input id="checkbox1" type="checkbox" name="permissions" value="<%= permission.idpermission %>" checked="">
+                                                        <label for="checkbox1">
+                                                            <%= permission.name %>
+                                                        </label>
+                                                    </div>
+                                                <% } else {%>
+                                                    <div class="checkbox">
+                                                        <input id="checkbox1" name="permissions" value="<%= permission.idpermission %>" type="checkbox">
+                                                        <label for="checkbox1">
+                                                            <%= permission.name %>
+                                                        </label>
+                                                    </div>
+                                                <% } %>
+                                            <% });%>
+                                        <% } %>
+                                    </div>
+                                    <div class="card-footer">
+                                        <button type="submit" class="btn btn-info btn-fill pull-left">Guardar</button>
+                                        <div class="clearfix"></div>
+                                    </div> 
+                                </form>  
+	                        </div><!--  end card  -->
+                            
+	                    </div> <!-- end col-md-12 -->
+	                </div> <!-- end row -->
+	            </div>
+	        </div>
+
+			<% include ../includes/footer.ejs %>
+			
+	    </div>
+	</div>
+
+</body>
+
+    <% include ../includes/scripts.ejs %>
+	<% include ../includes/sweetalerts.ejs %>
+	<%- locals.flash %>
+	
+	<script type="text/javascript">
+	    $(document).ready(function() {
+
+	    });
+	</script>
+</html>

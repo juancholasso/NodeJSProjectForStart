@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<% include ../includes/header.ejs %>
+	<title>Permisos</title>
+</head>
+
+<body>
+	<div class="wrapper">
+
+        <% include ../includes/dashboard.ejs %>
+
+	    <div class="main-panel">
+
+            <% include ../includes/navbar.ejs %>
+
+	        <div class="content">
+	            <div class="container-fluid">
+	                <div class="row">
+	                    <div class="col-md-12">
+							<h4 class="title">Permisos</h4>
+							<div class="card-content">
+								<a href="/permissions/update" class="btn btn-fill btn-info">Actualizar Permisosl</a>
+							</div>
+	                        <div class="card">
+	                            <div class="card-content">
+	                                <div class="toolbar">
+										
+	                                </div>
+                                    <div class="fresh-datatables">
+										<table id="datatables" class="table table-striped table-no-bordered table-hover" cellspacing="0" width="100%" style="width:100%">
+											<thead>
+												<tr>
+													<th>#</th>
+                                                    <th>Name</th>
+                                                    <th>Path</th>
+												</tr>
+											</thead>
+											<tfoot>
+												<tr>
+                                                    <th>#</th>
+                                                    <th>Name</th>
+                                                    <th>Path</th>
+												</tr>
+											</tfoot>
+											<tbody>
+												<% if (permissions) { %>
+													<% permissions.forEach(function(permission){ %>
+														<tr>
+															<td><%= permission.idpermission %></td>
+                                                            <td><%= permission.name %></td>
+                                                            <td><%= permission.path %></td>
+														</tr>
+													<% });%>
+												<% } %>
+											</tbody>
+									    </table>
+									</div>
+	                            </div>
+	                        </div><!--  end card  -->
+	                    </div> <!-- end col-md-12 -->
+	                </div> <!-- end row -->
+	            </div>
+	        </div>
+			<% include ../includes/footer.ejs %>
+	    </div>
+	</div>
+</body>
+
+    <% include ../includes/scripts.ejs %>
+	<%- locals.flash %>
+
+	<script type="text/javascript">
+	    $(document).ready(function() {
+
+	        $('#datatables').DataTable({
+	            "pagingType": "full_numbers",
+	            "lengthMenu": [[10, 25, 50, -1], [10, 25, 50, "All"]],
+	            responsive: true,
+	            language: {
+	            search: "_INPUT_",
+		            searchPlaceholder: "Search records",
+		        }
+	        });
+
+
+	        var table = $('#datatables').DataTable();
+
+	    });
+	</script>
+</html>

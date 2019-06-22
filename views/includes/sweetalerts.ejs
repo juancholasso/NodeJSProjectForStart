@@ -1,0 +1,25 @@
+<% if (locals.success) { %>
+    <script type="text/javascript">
+        console.log("entro")
+
+    swal({
+            title: '<%= locals.success.title %>',
+            text: '<%= locals.success.msg %>',
+            buttonsStyling: false,
+            confirmButtonClass: "btn btn-success btn-fill",
+            type: "success"
+        });
+    </script>
+<% } %>
+
+<% if (locals.error) { %>
+    <script type="text/javascript">
+    swal({
+            title: '<%= locals.error.title %>',
+            text: '<%= locals.error.msg %>',
+            buttonsStyling: false,
+            confirmButtonClass: "btn btn-warning btn-fill",
+            type: "warning"
+        });
+    </script>
+<% } %>
