@@ -17,7 +17,7 @@ routes.push({path:'/mail',name:'send-mail'})
 
 
 router.use('/upload', authmiddle.checkPermission('upload-private-file-get'));
-router.get('/upload', (req, res) => { res.render('example/uploadfile.ejs') });
+router.get('/upload', (req, res) => { res.render('admin/example/uploadfile.ejs') });
 routes.push({path:'/upload',name:'upload-private-file-get'})
 
 
