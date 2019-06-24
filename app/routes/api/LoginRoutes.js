@@ -7,7 +7,6 @@ var Role = require('../../models/Role');
 
 router.post('/login', (req, res, next)=>{
     passport.authenticate('login', function(err, user, info){
-        console.log(user)
         if(err){
             return res.status(500).json({error:"Internal server error"});
         }

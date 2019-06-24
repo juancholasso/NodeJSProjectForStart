@@ -26,6 +26,8 @@ routes = routes.concat(require('./web/ExampleRoutes').routes)
 app.use('/api/', require('./api/LoginRoutes') )
 app.use('/api/', require('./api/UsersRoutes') )
 
+//Route for health-check
+router.get('/health-check', (req, res) => { res.status(200).json({ok:"Service ok"})} );
 
 //Routes for errors
 router.get('/api/*', (req, res) => { res.status(404).json({"error":"Service not found"}) });
