@@ -1,4 +1,4 @@
-import index from '../index.js';
+import index from '../../index';
 
 var express = index.express;
 var app = index.app;

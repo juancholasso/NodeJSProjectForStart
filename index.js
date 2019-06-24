@@ -1,13 +1,13 @@
 /**
  * Environment
  */
-require('./config/env');
+require('./app/config/env');
 console.log(process.env.MAIL_USER)
 console.log(process.env.MAIL_PASSWORD)
 /**
  * Database Connection
 */
-var sequelize = require('./config/dbconn.js');
+var sequelize = require('./app/config/dbconn.js');
 
 /**
  * Libraries
@@ -21,13 +21,13 @@ const path = require('path');
 const flash = require('express-flash-notification');
 const SequelizeStore = require('connect-session-sequelize')(session.Store);
 const fileupload = require('express-fileupload');
-const Passport = require('./middlewares/Passport');
+const Passport = require('./app/middlewares/Passport');
 
 /**
  * Express Configuration
 */
-app.use(express.static(__dirname+'/public')); //Public folder
-app.set('views', path.resolve('views')); //Set folder views
+app.use(express.static(__dirname+'/app/public')); //Public folder
+app.set('views', path.resolve('app/views')); //Set folder views
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json()); //For api-rest
 app.use(cookieParser()); //Sessions
@@ -57,21 +57,21 @@ module.exports.app = app;
 /**
  * Models
 */
-require('./models/Permission.js');
-require('./models/Role.js');
-require('./models/User.js');
-require('./models/UsersHasRoles.js');
-require('./models/RolesHasPermissions.js');
+require('./app/models/Permission.js');
+require('./app/models/Role.js');
+require('./app/models/User.js');
+require('./app/models/UsersHasRoles.js');
+require('./app/models/RolesHasPermissions.js');
 
 /**
  * Start Server
  */
 async function startServer(){
   try{
-    await require('./models/Relationships.js');
+    await require('./app/models/Relationships.js');
     await sequelize.sync();
     
-    var routerWeb = require('./routes/routes.js').router;
+    var routerWeb = require('./app/routes/routes.js').router;
     app.use('/', routerWeb);
 
     //Start only on the first time deploying or when user admin was delete

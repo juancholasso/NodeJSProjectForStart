@@ -26,7 +26,7 @@ routes.push({path:'/logout',name:'logout'})
 
 router.use('/home', authmiddle.setSessionResponse);
 router.use('/home', authmiddle.sessionChecker);
-router.get('/home', (req, res) => { res.render('home/home.ejs',{rol:req.session.rol, user:req.session.user}) });
+router.get('/home', (req, res) => { res.render('admin/home/home.ejs',{rol:req.session.rol, user:req.session.user}) });
 routes.push({path:'/home',name:'home'})
 
 module.exports.router = router

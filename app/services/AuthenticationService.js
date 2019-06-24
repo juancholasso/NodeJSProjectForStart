@@ -44,7 +44,7 @@ class AuthenticationService{
                 req.session.save(()=>{ res.redirect('/home') } );
             }
             else{
-                res.render('auth/login.ejs',{ error: 'Usuario o contraseña invalida'});
+                res.render('admin/auth/login.ejs',{ error: 'Usuario o contraseña invalida'});
             }
         }
         catch(err){
