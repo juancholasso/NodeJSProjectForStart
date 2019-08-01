@@ -22,7 +22,7 @@ class AuthenticationService{
     //This function validate the login user and start session - only web
     async login(req, res){
         try{
-            let checkEmailPassword = this.authenticationController.checkEmailAndPassword(req.body.email, req.body.password);
+            let checkEmailPassword = await this.authenticationController.checkEmailAndPassword(req.body.email, req.body.password);
             if(checkEmailPassword){
                 let user = await this.userController.getUserByEmail(req.body.email);
                 let rolesUser = await UsersHasRoles.findAll({where:{iduser:user.get('iduser')}});
@@ -41,16 +41,16 @@ class AuthenticationService{
                 req.session.roles = rolesAll;
                 req.session.permissions = permissionsAll;
                 //Wait session save on db and after redirect to home
-                req.session.save(()=>{ res.redirect('/home') } );
+                req.session.save(()=>{ res.redirect('/admin/home') } );
             }
             else{
-                res.render('admin/auth/login.ejs',{ error: 'Usuario o contraseña invalida'});
+                res.render('admin/auth/login.ejs',{ error: 'Usuario o contraseña inválida'});
             }
         }
         catch(err){
             console.log(err);
             flashMessages.showErrorMessage(req, "Error!", "Error al iniciar sesión, por favor consulte al administrador!");
-            req.session.save(()=>{ res.redirect('/login') });
+            req.session.save(()=>{ res.redirect('/admin/login') });
         }
     }
 

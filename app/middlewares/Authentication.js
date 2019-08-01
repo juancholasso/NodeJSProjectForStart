@@ -42,7 +42,7 @@ let checkPermission = function (pname){
         let permission = await Permission.findOne({where: {name: pname}});
         if(permission == null){
             flashMessages.showErrorMessage(req, "Error!", "El usuario no tiene los permisos!");
-            req.session.save(()=>{ res.redirect('/home') });
+            req.session.save(()=>{ res.redirect('/admin/home') });
             return 0;
         }
         for(let rol of roles){
@@ -56,7 +56,7 @@ let checkPermission = function (pname){
             next();
         else{
             flashMessages.showErrorMessage(req, "Error!", "El usuario no tiene los permisos!");
-            req.session.save(()=>{ res.redirect('/home') });
+            req.session.save(()=>{ res.redirect('/admin/home') });
         }
             
     }

@@ -19,12 +19,12 @@ class PermissionsService{
           }
         }
         flashMessages.showSuccessMessage(req, "Exito!", "Permisos Actualizados!");
-        req.session.save(()=>{ res.redirect('/permissions') });
+        req.session.save(()=>{ res.redirect('/admin/permissions') });
     }
     catch(err){
         console.log(err);
         flashMessages.showErrorMessage(req, "Error!", "No se han podido actualizar los permisos!");
-        req.session.save(()=>{ res.redirect('/permissions') });
+        req.session.save(()=>{ res.redirect('/admin/permissions') });
     }
   }
 
@@ -35,7 +35,7 @@ class PermissionsService{
     }
     catch(err){
       flashMessages.showErrorMessage(req, "Error!", "No se han podido consultar los permisos!");
-      req.session.save(()=>{ res.redirect('/home') });
+      req.session.save(()=>{ res.redirect('/admin/home') });
     }
   }
 
@@ -43,11 +43,11 @@ class PermissionsService{
     try{
       this.permissionsController.delelePermission(req.params.idpermission);
       flashMessages.showSuccessMessage(req, "Exito!", "Permiso eliminado con éxito!");
-      req.session.save(()=>{ res.redirect('/permissions') });
+      req.session.save(()=>{ res.redirect('/admin/permissions') });
     }
     catch(err){
       flashMessages.showErrorMessage(req, "Error!", "No se han podido eliminar el permiso!");
-      req.session.save(()=>{ res.redirect('/permissions') });
+      req.session.save(()=>{ res.redirect('/admin/permissions') });
     }
   }
 

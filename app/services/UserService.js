@@ -21,7 +21,7 @@ class UserService{
         }
         catch(err){
             flashMessages.showErrorMessage(req, "Error!", "No se han podido consultar los usuarios!");
-            req.session.save(()=>{ res.redirect('/home') });
+            req.session.save(()=>{ res.redirect('/admin/home') });
         }
     }
 
@@ -48,12 +48,12 @@ class UserService{
                 req.body.idrol
             )            
             flashMessages.showSuccessMessage(req, "Exito!", "El usuario se ha creado existosamente!");
-            req.session.save(()=>{ res.redirect('/users') });
+            req.session.save(()=>{ res.redirect('/admin/users') });
         }
         catch(err){
             console.log(err)
             flashMessages.showErrorMessage(req, "Error!", "El usuario no se ha podido crear!");
-            req.session.save(()=>{ res.redirect('/users') });
+            req.session.save(()=>{ res.redirect('/admin/users') });
         }
     }
 
@@ -70,7 +70,7 @@ class UserService{
         }
         catch(err){
             flashMessages.showErrorMessage(req, "Error!", "No se ha podido cargar el modulo para la creación de usuarios!");
-            req.session.save(()=>{ res.redirect('/users') });
+            req.session.save(()=>{ res.redirect('/admin/users') });
         }
         
     }
@@ -78,18 +78,18 @@ class UserService{
     async deleteUser(req, res){
         if(req.params.iduser == req.session.user){
             flashMessages.showErrorMessage(req, "Error!", "No puede eliminar el usuario con el que está logueado!");
-            req.session.save(()=>{ res.redirect('/users') });
+            req.session.save(()=>{ res.redirect('/admin/users') });
         }
         else{
             try{
                 await this.userController.deleteUser(req.params.iduser);
                 flashMessages.showSuccessMessage(req, "Exito!", "El usuario se ha eliminado exitosamente!");
-                req.session.save(()=>{ res.redirect('/users') });
+                req.session.save(()=>{ res.redirect('/admin/users') });
             }
             catch(err){
                 console.log(err);
                 flashMessages.showErrorMessage(req, "Error!", "El usuario no se ha podido eliminar!");
-                req.session.save(()=>{ res.redirect('/users') });
+                req.session.save(()=>{ res.redirect('/admin/users') });
             }
         }
     }
@@ -102,7 +102,7 @@ class UserService{
         catch(err){
             console.log(err);
             flashMessages.showErrorMessage(req, "Error!", "Error al encontrar el usuario!");
-            req.session.save(()=>{ res.redirect('/users') });
+            req.session.save(()=>{ res.redirect('/admin/users') });
         }
     }
 
