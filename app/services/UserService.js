@@ -17,7 +17,7 @@ class UserService{
     async getUsers(req, res){
         try{
             let users = await this.userController.getUsers();
-            res.render('admin/users/index.ejs',{ users:users } );   
+            res.render('backend/users/index.ejs',{ users:users } );   
         }
         catch(err){
             flashMessages.showErrorMessage(req, "Error!", "No se han podido consultar los usuarios!");
@@ -60,7 +60,7 @@ class UserService{
     async getCreate(req, res){
         try{
             let roles = await Role.findAll()
-            res.render('admin/users/create.ejs',
+            res.render('backend/users/create.ejs',
                 {  
                     rol:req.session.rol, 
                     user:req.session.user, 
@@ -97,7 +97,7 @@ class UserService{
     async getUser(iduser, req, res){
         try{
             let userRes = await this.userController.getUser(iduser);
-            res.render('admin/users/show.ejs',{ user_res:userRes });
+            res.render('backend/users/show.ejs',{ user_res:userRes });
         }
         catch(err){
             console.log(err);

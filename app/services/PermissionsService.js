@@ -31,7 +31,7 @@ class PermissionsService{
   async getPermissions(req, res){
     try{
       var permissions = await this.permissionsController.getPermissions();
-      res.render('admin/permissions/index.ejs',{ permissions:permissions });
+      res.render('backend/permissions/index.ejs',{ permissions:permissions });
     }
     catch(err){
       flashMessages.showErrorMessage(req, "Error!", "No se han podido consultar los permisos!");

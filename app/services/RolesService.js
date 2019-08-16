@@ -12,10 +12,11 @@ class RolesService{
         this.permissionsController = new PermissionsController;
     }
 
+    //Backend Web methods -----------------------------------------------
     async getRoles(req, res){
         try{
             let roles = await this.rolesController.getRoles();
-            res.render(('admin/roles/index.ejs'),{ roles:roles });
+            res.render(('backend/roles/index.ejs'),{ roles:roles });
         }
         catch(err){
             console.log(err);
@@ -24,7 +25,16 @@ class RolesService{
         }
     }
     
-    //Function for create Rol on web
+    /**
+     * Render view for create rol
+     */
+    renderViewCreateRol(req, res){
+        res.render('roles/create.ejs');
+    }
+
+    /**
+     * Function for create Rol on web
+     */
     async createRol(req, res){
         try{
             await this.rolesController.createRol(req.body.rol);
@@ -42,7 +52,7 @@ class RolesService{
     async getRol(idrol, req, res){
         try{
             let rol = await this.rolesController.getRol(idrol);
-            res.render('admin/roles/show.ejs',{rol:req.session.rol, user:req.session.user, rol_res:rol });
+            res.render('backend/roles/show.ejs',{rol:req.session.rol, user:req.session.user, rol_res:rol });
         }
         catch(err){
             console.log(err);
@@ -82,7 +92,7 @@ class RolesService{
         try{
             let permissions = await this.permissionsController.getPermissions();
             let permissionsAsigned = await this.rolesController.getPermissions(req.params.idrol);
-            res.render('admin/roles/addpermissions.ejs',{ permissions:permissions, permissionsAsigned:permissionsAsigned });
+            res.render('backend/roles/addpermissions.ejs',{ permissions:permissions, permissionsAsigned:permissionsAsigned });
         }
         catch(err){
             console.log(err)
@@ -105,11 +115,7 @@ class RolesService{
         }
     }
     
-    /**
-     * 
-     * Services for app mobile (rest)
-     *
-     */
+    //Services api rest ----------------------------------------------------
     async getRolesApi(req, res){
         try{
             let roles = await rolesController.getRoles();

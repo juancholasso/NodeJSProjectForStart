@@ -3,7 +3,7 @@ import RolesController from '../controllers/RolesController';
 import bcrypt from 'bcrypt';
 
 /**
- * AuthenticationController
+ * AuthenticationController 
  */
 class AuthenticationController{
 
