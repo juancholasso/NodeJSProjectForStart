@@ -46,7 +46,7 @@ class AuthenticationService{
                 req.session.roles = rolesAll;
                 req.session.permissions = permissionsAll;
                 //Wait session save on db and after redirect to home
-                req.session.save(()=>{ res.redirect('/admin/home'); } );
+                req.session.save(()=>{ res.redirect('/backend/home'); } );
             }
             else{
                 res.render('backend/auth/login.ejs',{ error: 'Usuario o contraseña invalida'});
@@ -55,7 +55,7 @@ class AuthenticationService{
         catch(err){
             console.log(err);
             flashMessages.showErrorMessage(req, "Error!", "Error al iniciar sesión, por favor consulte al administrador!");
-            req.session.save(()=>{ res.redirect('/admin/login') });
+            req.session.save(()=>{ res.redirect('/backend/login') });
         }
     }
 

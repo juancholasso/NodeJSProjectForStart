@@ -21,7 +21,7 @@ class RolesService{
         catch(err){
             console.log(err);
             flashMessages.showErrorMessage(req, "Error!", "No se han podido consultar los roles!");
-            req.session.save(()=>{ res.redirect('/admin/home') });
+            req.session.save(()=>{ res.redirect('/backend/home') });
         }
     }
     
@@ -29,7 +29,7 @@ class RolesService{
      * Render view for create rol
      */
     renderViewCreateRol(req, res){
-        res.render('roles/create.ejs');
+        res.render('backend/roles/create.ejs');
     }
 
     /**
@@ -40,12 +40,12 @@ class RolesService{
             await this.rolesController.createRol(req.body.rol);
             // flashMessages.showSuccessMessage(req, "Exito!", "El rol se ha creado existosamente!");
             flashMessages.showTimeMessage(req, "Exito!", "El rol se ha creado existosamente!", 2000);
-            req.session.save(()=>{ res.redirect('/admin/roles') });
+            req.session.save(()=>{ res.redirect('/backend/roles') });
         }
         catch(err){
             console.log(err);
             flashMessages.showErrorMessage(req, "Error!", "El rol no se ha podido crear!");
-            req.session.save(()=>{ res.redirect('/admin/roles') });
+            req.session.save(()=>{ res.redirect('/backend/roles') });
         }
     }
     
@@ -57,7 +57,7 @@ class RolesService{
         catch(err){
             console.log(err);
             flashMessages.showErrorMessage(req, "Error!", "El rol no ha sido encontrado!");
-            req.session.save(()=>{ res.redirect('/admin/roles') });
+            req.session.save(()=>{ res.redirect('/backend/roles') });
         }
     }
     
@@ -66,25 +66,25 @@ class RolesService{
             let rol = await this.rolesController.getRol(req.params.idrol);
             if(rol.rol == "admin"){
                 flashMessages.showErrorMessage(req, "Error!", "No puede eliminar el Rol admin!");
-                req.session.save(()=>{ res.redirect('/admin/roles') });
+                req.session.save(()=>{ res.redirect('/backend/roles') });
             }
             else{
                 try{
                     await this.rolesController.deleteRol(req.params.idrol);
                     flashMessages.showSuccessMessage(req, "Exito!", "El rol se ha eliminado exitosamente!");
-                    req.session.save(()=>{ res.redirect('/admin/roles') });
+                    req.session.save(()=>{ res.redirect('/backend/roles') });
                 }
                 catch(err){
                     console.log(err);
                     flashMessages.showErrorMessage(req, "Error!", "El rol se ha podido eliminar!");
-                    req.session.save(()=>{ res.redirect('/admin/roles') });
+                    req.session.save(()=>{ res.redirect('/backend/roles') });
                 }
             }
         }
         catch(err){
             console.log(err);
             flashMessages.showErrorMessage(req, "Error!", "El rol se ha podido eliminar!");
-            req.session.save(()=>{ res.redirect('/admin/roles') });
+            req.session.save(()=>{ res.redirect('/backend/roles') });
         }
     }
 
@@ -97,7 +97,7 @@ class RolesService{
         catch(err){
             console.log(err)
             flashMessages.showErrorMessage(req, "Error!", "No se han podido consultar los permisos!");
-            req.session.save(()=>{ res.redirect('/admin/roles') });
+            req.session.save(()=>{ res.redirect('/backend/roles') });
         }
     }
 
@@ -106,12 +106,12 @@ class RolesService{
             await this.rolesController.removeAllPermissions(req.params.idrol);
             await this.rolesController.setListPermissions(req.params.idrol, req.body.permissions);
             flashMessages.showSuccessMessage(req, "Exito!", "Se han actualizado los permisos!");
-            req.session.save(()=>{ res.redirect('/admin/roles') });
+            req.session.save(()=>{ res.redirect('/backend/roles') });
         }   
         catch(err){
             console.log(err)
             flashMessages.showErrorMessage(req, "Error!", "No se han podido actualizar los permisos!");
-            req.session.save(()=>{ res.redirect('/admin/roles') });
+            req.session.save(()=>{ res.redirect('/backend/roles') });
         }
     }
     

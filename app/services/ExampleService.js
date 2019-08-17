@@ -15,11 +15,11 @@ class ExampleService{
         try{
             await this.exampleController.sendMail();
             flashMessages.showSuccessMessage(req, "Exito!", "Mensaje Enviado!");
-            req.session.save(()=>{ res.redirect('/admin/home') });
+            req.session.save(()=>{ res.redirect('/backend/home') });
         }
         catch(err){
             flashMessages.showErrorMessage(req, "Error!", "El mensaje no se pudo enviar, por favor revise las credenciales.!");
-            req.session.save(()=>{ res.redirect('/admin/home') });
+            req.session.save(()=>{ res.redirect('/backend/home') });
         }
     }
    
@@ -29,12 +29,12 @@ class ExampleService{
             fs.mkdirSync(storagePath, { recursive: true });
             fs.writeFileSync(storagePath+'/'+req.files.foo.name, req.files.foo.data);
             flashMessages.showSuccessMessage(req, "Exito!", "El archivo se ha guardado exitosamente en el servidor!");
-            req.session.save(()=>{ res.redirect('/admin/home') });
+            req.session.save(()=>{ res.redirect('/backend/home') });
         }
         catch(err){
             console.log(err)
             flashMessages.showErrorMessage(req, "Error!", "El archivo no se pudo guardar!");
-            req.session.save(()=>{ res.redirect('/admin/home') });
+            req.session.save(()=>{ res.redirect('/backend/home') });
         }
     }
 }
