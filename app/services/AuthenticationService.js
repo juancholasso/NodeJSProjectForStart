@@ -27,7 +27,8 @@ class AuthenticationService{
         try{
             let checkEmailPassword = await this.authenticationController.checkEmailAndPassword(req.body.email, req.body.password);
             if(checkEmailPassword){
-                let user = await this.userController.getUserByEmail(req.body.email );
+                console.log(req.body.email)
+                let user = await this.userController.getUserByEmail(req.body.email);
                 let rolesUser = await UsersHasRoles.findAll({where:{iduser:user.get('iduser')}});
                 let rolesAll = [];
                 let permissionsAll = [];
@@ -45,7 +46,7 @@ class AuthenticationService{
                 req.session.roles = rolesAll;
                 req.session.permissions = permissionsAll;
                 //Wait session save on db and after redirect to home
-                req.session.save(()=>{ res.redirect('/home'); } );
+                req.session.save(()=>{ res.redirect('/admin/home'); } );
             }
             else{
                 res.render('backend/auth/login.ejs',{ error: 'Usuario o contraseña invalida'});
