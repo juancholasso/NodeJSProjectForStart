@@ -17,11 +17,11 @@ class UserService{
     async getUsers(req, res){
         try{
             let users = await this.userController.getUsers();
-            res.render('admin/users/index.ejs',{ users:users } );   
+            res.render('backend/users/index.ejs',{ users:users } );   
         }
         catch(err){
             flashMessages.showErrorMessage(req, "Error!", "No se han podido consultar los usuarios!");
-            req.session.save(()=>{ res.redirect('/home') });
+            req.session.save(()=>{ res.redirect('/backend/home') });
         }
     }
 
@@ -48,19 +48,19 @@ class UserService{
                 req.body.idrol
             )            
             flashMessages.showSuccessMessage(req, "Exito!", "El usuario se ha creado existosamente!");
-            req.session.save(()=>{ res.redirect('/users') });
+            req.session.save(()=>{ res.redirect('/backend/users') });
         }
         catch(err){
             console.log(err)
             flashMessages.showErrorMessage(req, "Error!", "El usuario no se ha podido crear!");
-            req.session.save(()=>{ res.redirect('/users') });
+            req.session.save(()=>{ res.redirect('/backend/users') });
         }
     }
 
     async getCreate(req, res){
         try{
             let roles = await Role.findAll()
-            res.render('admin/users/create.ejs',
+            res.render('backend/users/create.ejs',
                 {  
                     rol:req.session.rol, 
                     user:req.session.user, 
@@ -70,7 +70,7 @@ class UserService{
         }
         catch(err){
             flashMessages.showErrorMessage(req, "Error!", "No se ha podido cargar el modulo para la creación de usuarios!");
-            req.session.save(()=>{ res.redirect('/users') });
+            req.session.save(()=>{ res.redirect('/backend/users') });
         }
         
     }
@@ -78,18 +78,18 @@ class UserService{
     async deleteUser(req, res){
         if(req.params.iduser == req.session.user){
             flashMessages.showErrorMessage(req, "Error!", "No puede eliminar el usuario con el que está logueado!");
-            req.session.save(()=>{ res.redirect('/users') });
+            req.session.save(()=>{ res.redirect('/backend/users') });
         }
         else{
             try{
                 await this.userController.deleteUser(req.params.iduser);
                 flashMessages.showSuccessMessage(req, "Exito!", "El usuario se ha eliminado exitosamente!");
-                req.session.save(()=>{ res.redirect('/users') });
+                req.session.save(()=>{ res.redirect('/backend/users') });
             }
             catch(err){
                 console.log(err);
                 flashMessages.showErrorMessage(req, "Error!", "El usuario no se ha podido eliminar!");
-                req.session.save(()=>{ res.redirect('/users') });
+                req.session.save(()=>{ res.redirect('/backend/users') });
             }
         }
     }
@@ -97,12 +97,12 @@ class UserService{
     async getUser(iduser, req, res){
         try{
             let userRes = await this.userController.getUser(iduser);
-            res.render('admin/users/show.ejs',{ user_res:userRes });
+            res.render('backend/users/show.ejs',{ user_res:userRes });
         }
         catch(err){
             console.log(err);
             flashMessages.showErrorMessage(req, "Error!", "Error al encontrar el usuario!");
-            req.session.save(()=>{ res.redirect('/users') });
+            req.session.save(()=>{ res.redirect('/backend/users') });
         }
     }
 

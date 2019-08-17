@@ -15,7 +15,7 @@ router.get('/roles', (req, res) => { rolesService.getRoles(req, res) });
 routes.push({path:'/roles',name:'roles-index'})
 
 router.use('/roles/create', authmiddle.checkPermission('roles-create-get'));
-router.get('/roles/create', (req, res) => { res.render('roles/create.ejs') });
+router.get('/roles/create', (req, res) => { rolesService.renderViewCreateRol(req,res) });
 routes.push({path:'/roles/create',name:'roles-create-get'})
 
 router.use('/roles/create', authmiddle.checkPermission('roles-create-post'));

@@ -1,21 +1,28 @@
-var path = require('path');
-var RolesHasPermissions = require('../models/RolesHasPermissions.js');
-var Permission = require('../models/Permission.js');
-const jwt = require('jsonwebtoken');
-var flashMessages = require('../imports/FlashMessages.js');
+import AuthenticationService from '../services/AuthenticationService';
+import path from 'path';
+import RolesHasPermissions from '../models/RolesHasPermissions.js';
+import Permission from '../models/Permission.js';
+import jwt from 'jsonwebtoken';
+import flashMessages from '../imports/FlashMessages.js';
 
-//Check if user is autheticated, if not, show login page
-//Verifica si el usuario est'a autenticado, de lo contrario muestra la pagina de login
+const authenticationService = new AuthenticationService;
+
+/**
+ * Check if user is autheticated, in case not, show login page
+ * Verifica si el usuario está autenticado, de lo contrario muestra la pagina de login
+ */
 var sessionChecker = function (req, res, next){
     if(req.session.user){
         next();
     }else{
-        res.render('admin/auth/login.ejs');
+        authenticationService.renderLoginView(req,res);
     }
 };
 
-//En cada petici'on de un usuario logeado persiste sus permisos y roles asociados en la session
-var setSessionResponse = function (req, res, next){
+/*
+ * En cada petición de un usuario logeado persiste sus permisos y roles asociados en la session
+*/
+ var setSessionResponse = function (req, res, next){
     res.locals.session = req.session;
     res.locals.can = function(ppermission){
         let permissions = res.locals.session.permissions;
@@ -34,7 +41,9 @@ var setSessionResponse = function (req, res, next){
     next();
 };
 
-//Verifica si la el usuario tiene el permiso para ejecutar la petici'on
+/**
+ * Check if user have permission for execute service 
+ */
 let checkPermission = function (pname){
     return async function (req, res, next){
         let roles = req.session.roles;
@@ -42,7 +51,7 @@ let checkPermission = function (pname){
         let permission = await Permission.findOne({where: {name: pname}});
         if(permission == null){
             flashMessages.showErrorMessage(req, "Error!", "El usuario no tiene los permisos!");
-            req.session.save(()=>{ res.redirect('/home') });
+            req.session.save(()=>{ res.redirect('/backend/home') });
             return 0;
         }
         for(let rol of roles){
@@ -56,7 +65,7 @@ let checkPermission = function (pname){
             next();
         else{
             flashMessages.showErrorMessage(req, "Error!", "El usuario no tiene los permisos!");
-            req.session.save(()=>{ res.redirect('/home') });
+            req.session.save(()=>{ res.redirect('/backend/home') });
         }
             
     }

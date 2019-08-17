@@ -105,6 +105,5 @@ class RolesController{
         return permissions;
     }
 }
-//Get list with all roles
 
 module.exports = RolesController;

@@ -20,7 +20,7 @@
 	                    <div class="col-md-12">
 							<h4 class="title">Roles</h4>
 							<div class="card-content">
-								<a href="/roles/create" class="btn btn-fill btn-info">Agregar Rol</a>
+								<a href="/backend/roles/create" class="btn btn-fill btn-info">Agregar Rol</a>
 							</div>
 	                        <div class="card">
 	                            <div class="card-content">
@@ -52,11 +52,11 @@
 															<td><%= rol.idrol %></td>
 															<td><%= rol.rol %></td>
 															<td>
-																<a href="/roles/<%=rol.idrol %>/permissions" class="btn btn-simple btn-info btn-icon like"><i class="ti-search"></i></a>
+																<a href="/backend/roles/<%=rol.idrol %>/permissions" class="btn btn-simple btn-info btn-icon like"><i class="ti-search"></i></a>
 															</td>
 															<td>
-																<a href="/roles/<%=rol.idrol %>/show" class="btn btn-simple btn-info btn-icon like"><i class="ti-search"></i></a>
-																<a href="/roles/<%=rol.idrol %>/delete" class="btn btn-simple btn-warning btn-icon edit"><i class="ti-trash"></i></a>
+																<a href="/backend/roles/<%=rol.idrol %>/show" class="btn btn-simple btn-info btn-icon like"><i class="ti-search"></i></a>
+																<a href="/backend/roles/<%=rol.idrol %>/delete" class="btn btn-simple btn-warning btn-icon edit"><i class="ti-trash"></i></a>
 																<!--input type="checkbox" class="switch-plain" checked-->
 															</td>
 														</tr>

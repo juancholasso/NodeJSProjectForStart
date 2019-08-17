@@ -9,11 +9,11 @@ let routes = [];
 
 
 //Routes for BackendWEB
-app.use('/', require('./web/LoginRoutes').router )
-app.use('/', require('./web/UsersRoutes').router )
-app.use('/', require('./web/RolesRoutes').router )
-app.use('/', require('./web/PermissionsRoutes').router )
-app.use('/', require('./web/ExampleRoutes').router )
+app.use('/backend', require('./web/LoginRoutes').router )
+app.use('/backend', require('./web/UsersRoutes').router )
+app.use('/backend', require('./web/RolesRoutes').router )
+app.use('/backend', require('./web/PermissionsRoutes').router )
+app.use('/backend', require('./web/ExampleRoutes').router )
 
 //Merge routes array BackendWEB
 routes = routes.concat(require('./web/LoginRoutes').routes)
